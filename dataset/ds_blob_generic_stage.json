@@ -1,0 +1,29 @@
+{
+	"name": "ds_blob_generic_stage",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_blob_chinookstage",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"TableName": {
+				"type": "string"
+			}
+		},
+		"annotations": [],
+		"type": "Parquet",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": {
+					"value": "@concat(dataset().TableName, '_', formatDateTime(utcNow(), 'yyyyMMdd_HHmmss'), '.parquet')",
+					"type": "Expression"
+				},
+				"container": "chinookstage"
+			},
+			"compressionCodec": "snappy"
+		},
+		"schema": []
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}
