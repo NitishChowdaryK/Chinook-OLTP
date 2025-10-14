@@ -1,0 +1,36 @@
+{
+	"$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"value": "adf-chinook-dwh"
+		},
+		"LS_Blob_Chinook_connectionString": {
+			"value": ""
+		},
+		"LS_Snowflake_MediaDW_password": {
+			"value": ""
+		},
+		"ls_blob_chinookstage_connectionString": {
+			"value": ""
+		},
+		"ls_sql_chinook_oltp_password": {
+			"value": ""
+		},
+		"LS_KeyVault_Chinook_properties_typeProperties_baseUrl": {
+			"value": "https://kv-chinookkeys.vault.azure.net/"
+		},
+		"LS_Snowflake_MediaDW_properties_typeProperties_database": {
+			"value": "MEDIA_DB"
+		},
+		"ls_sql_chinook_oltp_properties_typeProperties_server": {
+			"value": "chinook-sql-server2025.database.windows.net"
+		},
+		"ls_sql_chinook_oltp_properties_typeProperties_database": {
+			"value": "Chinook"
+		},
+		"ls_sql_chinook_oltp_properties_typeProperties_userName": {
+			"value": "fall2025"
+		}
+	}
+}

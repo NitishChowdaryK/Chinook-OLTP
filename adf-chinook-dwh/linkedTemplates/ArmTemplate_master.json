@@ -1,0 +1,105 @@
+{
+	"$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"type": "string",
+			"metadata": "Data Factory name",
+			"defaultValue": "adf-chinook-dwh"
+		},
+		"LS_Blob_Chinook_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'LS_Blob_Chinook'"
+		},
+		"LS_Snowflake_MediaDW_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'LS_Snowflake_MediaDW'"
+		},
+		"ls_blob_chinookstage_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'ls_blob_chinookstage'"
+		},
+		"ls_sql_chinook_oltp_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'ls_sql_chinook_oltp'"
+		},
+		"LS_KeyVault_Chinook_properties_typeProperties_baseUrl": {
+			"type": "string",
+			"defaultValue": "https://kv-chinookkeys.vault.azure.net/"
+		},
+		"LS_Snowflake_MediaDW_properties_typeProperties_database": {
+			"type": "string",
+			"defaultValue": "MEDIA_DB"
+		},
+		"ls_sql_chinook_oltp_properties_typeProperties_server": {
+			"type": "string",
+			"defaultValue": "chinook-sql-server2025.database.windows.net"
+		},
+		"ls_sql_chinook_oltp_properties_typeProperties_database": {
+			"type": "string",
+			"defaultValue": "Chinook"
+		},
+		"ls_sql_chinook_oltp_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "fall2025"
+		},
+		"containerUri": {
+			"type": "string",
+			"metadata": "URI to storage account containing linked ARM templates"
+		},
+		"containerSasToken": {
+			"type": "string",
+			"metadata": "Sas token to storage account containing linked ARM templates"
+		}
+	},
+	"variables": {
+		"factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
+	},
+	"resources": [
+		{
+			"name": "adf-chinook-dwh_ArmTemplate_0",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2024-03-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_0.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					},
+					"LS_Blob_Chinook_connectionString": {
+						"value": "[parameters('LS_Blob_Chinook_connectionString')]"
+					},
+					"LS_Snowflake_MediaDW_password": {
+						"value": "[parameters('LS_Snowflake_MediaDW_password')]"
+					},
+					"ls_blob_chinookstage_connectionString": {
+						"value": "[parameters('ls_blob_chinookstage_connectionString')]"
+					},
+					"ls_sql_chinook_oltp_password": {
+						"value": "[parameters('ls_sql_chinook_oltp_password')]"
+					},
+					"LS_KeyVault_Chinook_properties_typeProperties_baseUrl": {
+						"value": "[parameters('LS_KeyVault_Chinook_properties_typeProperties_baseUrl')]"
+					},
+					"LS_Snowflake_MediaDW_properties_typeProperties_database": {
+						"value": "[parameters('LS_Snowflake_MediaDW_properties_typeProperties_database')]"
+					},
+					"ls_sql_chinook_oltp_properties_typeProperties_server": {
+						"value": "[parameters('ls_sql_chinook_oltp_properties_typeProperties_server')]"
+					},
+					"ls_sql_chinook_oltp_properties_typeProperties_database": {
+						"value": "[parameters('ls_sql_chinook_oltp_properties_typeProperties_database')]"
+					},
+					"ls_sql_chinook_oltp_properties_typeProperties_userName": {
+						"value": "[parameters('ls_sql_chinook_oltp_properties_typeProperties_userName')]"
+					}
+				}
+			},
+			"dependsOn": []
+		}
+	]
+}
