@@ -1,1 +1,1 @@
-# Damg-Assignment-Replicate-Workshop-on-Chinook-OLTP
+# Chinook-OLTP
